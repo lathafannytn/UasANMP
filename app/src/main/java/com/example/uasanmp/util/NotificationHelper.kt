@@ -20,7 +20,7 @@ class NotificationHelper(val context: Context) {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val channel = NotificationChannel(CHANNEL_ID,CHANNEL_ID,
                 NotificationManager.IMPORTANCE_DEFAULT).apply {
-                description ="ubUaya Kuliner channel description"
+                description ="ubaya kuliner channel description"
             }
             val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE)
                     as NotificationManager

@@ -62,7 +62,7 @@ class ListFoodFragment : Fragment() {
             }else{
                 val action =ListFoodFragmentDirections.actionFoodToSignInFragment()
                 val navController = Navigation.findNavController(view)
-//                navController.popBackStack()
+
                 navController.navigate(action)
             }
         }
