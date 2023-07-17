@@ -27,6 +27,29 @@ class UserViewModel(application: Application): AndroidViewModel(application), Co
 
     }
 
+    fun fetch(username: String) {
+        viewModelScope.launch {
+            val user = withContext(Dispatchers.IO) {
+                val db = buildDB(getApplication())
+                db.userDao().selectProfile(username)
+            }
+            userLD.postValue(user)
+        }
+    }
+
+    fun update(fullname:String,phonenumber:String,password:String,id:Int){
+        launch {
+            val db = buildDB(getApplication())
+            db.userDao().userUpdate(fullname,phonenumber,password,id)
+        }
+    }
+
+    fun updateSaldo(saldo:Int,id:Int){
+        launch {
+            val db = buildDB(getApplication())
+            db.userDao().updateSaldo(saldo,id)
+        }
+    }
 
     private val job = Job()
     override val coroutineContext: CoroutineContext
