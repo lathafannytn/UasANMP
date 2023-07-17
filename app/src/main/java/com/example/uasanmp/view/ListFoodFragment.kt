@@ -1,33 +1,30 @@
 package com.example.uasanmp.view
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.uasanmp.R
+import com.example.uasanmp.util.foodArray
+import com.example.uasanmp.viewmodel.FoodViewModel
+import kotlinx.android.synthetic.main.fragment_list_food.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ListFoodFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ListFoodFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object{
+        val EXTRA_FOOD = "FOOD"
     }
+    private lateinit var viewModel: FoodViewModel
+    private val foodListAdapter = FoodListAdapter(arrayListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,23 +34,43 @@ class ListFoodFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_list_food, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ListFoodFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ListFoodFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
+
+
+        var sharedFile = requireActivity().packageName
+        var shared: SharedPreferences = requireActivity().getSharedPreferences(sharedFile, Context.MODE_PRIVATE)
+        var isFoodStored = shared.getString(EXTRA_FOOD, "")
+        isFoodStored?.let {
+            if (it.isEmpty()){
+                val list= foodArray
+                viewModel.addFood(list.toList())
+                var editor: SharedPreferences.Editor = shared.edit()
+                editor.putString(EXTRA_FOOD,"yes")
+                editor.apply()
             }
+        }
+        var savedUsername = shared.getString(SignInFragment.EXTRA_USERNAME, "")
+        savedUsername?.let {
+            if (savedUsername!!.isNotEmpty()){
+                viewModel.refresh()
+
+                recyclerViewListFood.layoutManager = LinearLayoutManager(context)
+                recyclerViewListFood.adapter = foodListAdapter
+                observeViewModel()
+            }else{
+                val action =ListFoodFragmentDirections.actionFoodToSignInFragment()
+                val navController = Navigation.findNavController(view)
+
+                navController.navigate(action)
+            }
+        }
+    }
+
+    fun observeViewModel(){
+        viewModel.foodsLD.observe(viewLifecycleOwner, Observer {
+            foodListAdapter.updateTodoList(it)
+        })
     }
 }

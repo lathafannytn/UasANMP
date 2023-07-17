@@ -7,17 +7,27 @@
     app:startDestination="@id/itemListFood">
 
     <fragment
+        android:id="@+id/detailFoodFragment"
+        android:name="com.example.uasanmp.view.DetailFoodFragment"
+        android:label="Detail Makanan"
+        tools:layout="@layout/fragment_detail_food">
+        <argument
+            android:name="idfood"
+            app:argType="integer" />
+    </fragment>
+    <fragment
         android:id="@+id/itemListFood"
         android:name="com.example.uasanmp.view.ListFoodFragment"
         android:label="Kuliner Ubaya"
         tools:layout="@layout/fragment_list_food">
         <action
-            android:id="@+id/actionDetailFood"/>
-        <action
             android:id="@+id/actionFoodToSignInFragment"
             app:destination="@id/signInFragment"
             app:popUpTo="@id/signInFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/actionDetailFood"
+            app:destination="@id/detailFoodFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"

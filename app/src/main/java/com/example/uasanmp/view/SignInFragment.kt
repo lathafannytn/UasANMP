@@ -40,8 +40,7 @@ class SignInFragment : Fragment(), ButtonSignInListener, TextSignUpListener {
         var sharedFile = requireActivity().packageName
         shared = requireActivity().getSharedPreferences(sharedFile, Context.MODE_PRIVATE)
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
-//        //retrive saved username
-//
+
         var savedUsername = shared.getString(SignInFragment.EXTRA_USERNAME, "")
         savedUsername?.let {
             if (it.isNotEmpty()){
@@ -55,10 +54,7 @@ class SignInFragment : Fragment(), ButtonSignInListener, TextSignUpListener {
         dataBinding.signinlistener = this
         dataBinding.signuplistener = this
 
-        //save username
-//        var editor: SharedPreferences.Editor = shared.edit()
-//        editor.putString(EXTRA_USERNAME,username)
-//        editor.apply()
+
     }
 
     override fun onButtonSignIn(v: View) {
