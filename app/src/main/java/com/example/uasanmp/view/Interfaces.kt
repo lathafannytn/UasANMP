@@ -37,3 +37,15 @@ interface MinQtyListener{
     fun onMinQty(v:View)
 }
 
+interface ButtonEditProfileListener{
+    fun onButtonEditProfile(v:View)
+}
+
+interface ButtonSaveChangeEditProfileListener{
+    fun onButtonSaveChangeEditProfile(v:View, obj:User)
+}
+
+interface ButtonLogoutListener {
+    fun onButtonLogout(v:View)
+}
+
