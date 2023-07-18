@@ -1,21 +1,24 @@
 package com.example.uasanmp.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.uasanmp.R
+import com.example.uasanmp.databinding.FragmentEditProfileBinding
 import com.example.uasanmp.model.User
 import com.example.uasanmp.viewmodel.UserViewModel
 
 
-class EditProfileFragment : Fragment() {
-    private lateinit var viewModel: UserViewModel
+class EditProfileFragment : Fragment(), ButtonSaveChangeEditProfileListener {
+    private lateinit var viewModel:UserViewModel
     private lateinit var dataBinding:FragmentEditProfileBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

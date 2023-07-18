@@ -9,14 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.uasanmp.R
+import com.example.uasanmp.databinding.FragmentProfileBinding
+import com.example.uasanmp.model.User
 import com.example.uasanmp.viewmodel.UserViewModel
 
 
-class ProfileFragment : Fragment() {
-    private lateinit var viewModel: UserViewModel
+class ProfileFragment : Fragment(), ButtonEditProfileListener, ButtonLogoutListener {
+    private lateinit var viewModel:UserViewModel
     private lateinit var dataBinding: FragmentProfileBinding
     var savedUsername:String?= null
     override fun onCreateView(

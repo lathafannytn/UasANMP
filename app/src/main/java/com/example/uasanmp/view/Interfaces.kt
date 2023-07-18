@@ -20,6 +20,13 @@ interface TextSignUpListener{
     fun onTextSignUp(v:View)
 }
 
+interface ButtonEditProfileListener{
+    fun onButtonEditProfile(v:View)
+}
+
+interface ButtonSaveChangeEditProfileListener{
+    fun onButtonSaveChangeEditProfile(v:View, obj:User)
+}
 
 interface FoodCardListener{
     fun onFoodCard(v:View)
@@ -37,15 +44,11 @@ interface MinQtyListener{
     fun onMinQty(v:View)
 }
 
-interface ButtonEditProfileListener{
-    fun onButtonEditProfile(v:View)
-}
-
-interface ButtonSaveChangeEditProfileListener{
-    fun onButtonSaveChangeEditProfile(v:View, obj:User)
-}
-
 interface ButtonLogoutListener {
     fun onButtonLogout(v:View)
+}
+
+interface HistoryCardListener{
+    fun onHistoryCard(v:View)
 }
 
