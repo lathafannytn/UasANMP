@@ -33,7 +33,15 @@ class NotificationHelper(val context: Context) {
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
-        val pendintIntent = PendingIntent.getActivity(context,0, intent, 0)
+
+
+        val pendintIntent = PendingIntent.getActivity(context,0, intent,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            } else {
+                PendingIntent.FLAG_UPDATE_CURRENT })
+
+
         val icon = BitmapFactory.decodeResource(context.resources, R.drawable.large)
         val notification = NotificationCompat.Builder(context, CHANNEL_ID)
             .setSmallIcon(R.drawable.small)
