@@ -74,5 +74,15 @@
             android:id="@+id/actionSignUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/detailHistoryFragment"
+        android:name="com.example.uasanmp.view.DetailHistoryFragment"
+        android:label="Detail History"
+        tools:layout="@layout/fragment_detail_history" >
+        <argument
+            android:name="orderid"
+            app:argType="integer" />
+    </fragment>
+
 
 </navigation>
