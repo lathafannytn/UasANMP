@@ -7,10 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uasanmp.R
+import com.example.uasanmp.model.Food
+import com.example.uasanmp.model.Order
+import com.example.uasanmp.model.User
 import com.example.uasanmp.viewmodel.FoodViewModel
 import com.example.uasanmp.viewmodel.OrderViewModel
 import com.example.uasanmp.viewmodel.UserViewModel

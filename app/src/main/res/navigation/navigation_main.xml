@@ -7,6 +7,31 @@
     app:startDestination="@id/itemListFood">
 
     <fragment
+        android:id="@+id/itemHistory"
+        android:name="com.example.uasanmp.view.HistoryFragment"
+        android:label="History Transaksi"
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/actionHistoryToSignIn"
+            app:destination="@id/signInFragment"
+            app:popUpTo="@id/navigation_main"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/actionDetailHistory"
+            app:destination="@id/detailHistoryFragment"
+            app:popUpTo="@id/detailHistoryFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailHistoryFragment"
+        android:name="com.example.uasanmp.view.DetailHistoryFragment"
+        android:label="Detail History"
+        tools:layout="@layout/fragment_detail_history">
+        <argument
+            android:name="orderid"
+            app:argType="integer" />
+    </fragment>
+    <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.uasanmp.view.EditProfileFragment"
         android:label="Edit Profile">
@@ -73,15 +98,6 @@
         <action
             android:id="@+id/actionSignUpFragment"
             app:destination="@id/signUpFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailHistoryFragment"
-        android:name="com.example.uasanmp.view.DetailHistoryFragment"
-        android:label="Detail History"
-        tools:layout="@layout/fragment_detail_history" >
-        <argument
-            android:name="orderid"
-            app:argType="integer" />
     </fragment>
 
 

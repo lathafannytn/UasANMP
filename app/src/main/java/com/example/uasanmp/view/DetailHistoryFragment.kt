@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.uasanmp.R
+import com.example.uasanmp.databinding.FragmentDetailHistoryBinding
+import com.example.uasanmp.model.Food
 import com.example.uasanmp.model.Order
 import com.example.uasanmp.viewmodel.OrderViewModel
 import java.time.Instant
