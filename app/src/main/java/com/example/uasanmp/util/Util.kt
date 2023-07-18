@@ -6,6 +6,8 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.databinding.BindingAdapter
 import androidx.room.Room
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.uasanmp.R
 import com.example.uasanmp.model.Food
 import com.example.uasanmp.model.UbayaKulinerDatabase
@@ -278,4 +280,11 @@ fun ImageView.loadImage(url: String?,){
 @BindingAdapter("android:imageUrl")
 fun loadPhotoUrl(view: ImageView, url:String){
     view.loadImage(url)
+}
+
+val MIGRATION_1_2 = object : Migration(1,2){
+    override fun migrate(database: SupportSQLiteDatabase) {
+        database.execSQL(
+            "ALTER TABLE user ADD COLUMN saldo INTEGER DEFAULT 1000000 not null")
+    }
 }

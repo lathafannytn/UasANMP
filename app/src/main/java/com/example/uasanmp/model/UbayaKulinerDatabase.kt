@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.uasanmp.util.MIGRATION_1_2
 
 @Database(entities = arrayOf(User::class, Food::class, Order::class), version = 1)
 abstract class UbayaKulinerDatabase:RoomDatabase() {
@@ -20,7 +21,7 @@ abstract class UbayaKulinerDatabase:RoomDatabase() {
                 context.applicationContext,
                 UbayaKulinerDatabase::class.java,
                 "ubayakuliner"
-            ).build()
+            ).addMigrations(MIGRATION_1_2).build()
 
         operator fun invoke(context: Context){
             if (instance==null){
