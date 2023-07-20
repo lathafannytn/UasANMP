@@ -44,11 +44,10 @@ interface MinQtyListener{
     fun onMinQty(v:View)
 }
 
-interface ButtonLogoutListener {
-    fun onButtonLogout(v:View)
-}
-
 interface HistoryCardListener{
     fun onHistoryCard(v:View)
 }
 
+interface ButtonLogoutListener {
+    fun onButtonLogout(v:View)
+}
